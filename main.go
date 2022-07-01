@@ -2,6 +2,8 @@ package main
 
 //Example Test Server
 
+// import necessary packages
+// net/http package allows use of servemux multiplexer
 import (
 	"context"
 	"fmt"
@@ -15,14 +17,22 @@ import (
 )
 
 func main() {
+
+	// a servemux (aka router) stores mapping btwn URL path for app
+	// and associated handlers
+
 	mux := http.NewServeMux()
 	//Convert handler func to a http.HandlerFunc type
 	th := http.HandlerFunc(handler)
+
 	//and add it to ServeMux
 	mux.Handle("/", th)
 	log.Print("listening..")
+
+	// create a server that listens to incoming requests
 	http.ListenAndServe(":8080", mux)
 }
+
 //put this in its own package
 const indexHTML = `
 <!doctype html>
@@ -43,6 +53,9 @@ const indexHTML = `
 </html>
 `
 
+// create a predefined template that can be replicated for each of the selected movies
+// upon refreshing the web app page
+
 var indexHTMLTemplate = template.Must(template.New("indexHTML").Parse(indexHTML))
 
 type MovieGetter interface {
@@ -51,10 +64,14 @@ type MovieGetter interface {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	var cli MovieGetter = &api.Client{
+
+		// retrieve environment variable 'TMDB' that stores API key
 		APIKey: os.Getenv("TMDB"),
 	}
 
 	response, err := cli.GetTrendingMovies(r.Context())
+
+	// error handling
 	if err != nil {
 		http.Error(w, fmt.Sprintf("failed to get trending movies: %v", err), http.StatusInternalServerError)
 		return
