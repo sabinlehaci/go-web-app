@@ -39,15 +39,17 @@ const indexHTML = `
 <html lang=en>
 <head>
 	<meta charset=utf-8>
-	<title>Sabins Movie Night</title>
+	<title> Sabins Movie Night</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-	<div class="bg-neutral-100">
-		<h1 class="text-xl">Sabins Movie Night</h1>
-		<p>You have been selected a random trending movie!</p>
-		<p>Your movie title is: {{ .Title }}</p>
-		<p class="text-sm">{{ .Overview }}</p>
+	<div class="bg-amber-100 bg-cover space-y-5 font-mono mx-9">
+		<p class="space-y-12"><p>
+		<h1 class="text-5xl text-center text-blue-500 shadow-orange-500 font-bold">Sabins Movie Night</h1>
+		<p class="text-base text-center">You have been selected a random trending movie!</p>
+		<p class="text-base text-center text-blue-500 font-bold">Your movie title is:</p>
+		<p class="text-center underline">{{ .Title }}</p>
+		<p class="text-base indent-5">{{ .Overview }}</p>
 	</div>
 </body>
 </html>
