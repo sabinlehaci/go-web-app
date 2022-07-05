@@ -15,7 +15,8 @@ type Movie struct {
 	Media_type    string `json:"movie"`
 	Title         string `json:"title"`
 	Overview      string `json:"overview"`
-	Popularity    float64    `json:"popularity"`
+	Popularity    float64 `json:"popularity"`
+	Poster 		  string `json:"poster_path"`
 	Release_date  string `json:"release_date"`
 }
 

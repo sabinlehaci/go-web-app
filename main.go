@@ -1,7 +1,5 @@
 package main
 
-//Example Test Server
-
 // import necessary packages
 // net/http package allows use of servemux multiplexer
 import (
@@ -37,32 +35,6 @@ func main() {
 
 var indexHTMLTemplate = template.Must(template.ParseGlob("assets/index.html"))  
 
-
-
-//put this in its own package
-const indexHTML = `
-<!doctype html>
-<html lang=en>
-<head>
-	<meta charset=utf-8>
-	<title>Sabins Movie Night</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-	<div class="bg-neutral-100">
-		<h1 class="text-xl">Sabins Movie Night</h1>
-		<p>You have been selected a random trending movie!</p>
-		<p>Your movie title is: {{ .Title }}</p>
-		<p class="text-sm">{{ .Overview }}</p>
-	</div>
-</body>
-</html>
-`
-
-// create a predefined template that can be replicated for each of the selected movies
-// upon refreshing the web app page
-
-
 type MovieGetter interface {
 	GetTrendingMovies(ctx context.Context) (*api.Response, error)
 }
@@ -92,12 +64,4 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-
-
-//Separate handlers into its own dir to clean up this file 
-//Cannot show img object 
-//func imgHandler(w http.ResponseWriter, r*http.Request) {
-//	http.ServeFile(w,r,"index.html")
-//	http.Handle()
-//} 
 
