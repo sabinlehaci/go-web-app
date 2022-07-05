@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang=en>
+<head>
+	<meta charset=utf-8>
+	<title>Sabins Movie Night</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+
+</head>
+<body>
+	<div class="bg-neutral-100">
+		<h1 class="text-xl">Sabin's Movie Night</h1>
+		<p>You have been selected a random trending movie!</p>
+		<p>Your movie title is: {{ .Title }}</p>
+		<img src= "{{.Backdrop_path}}" width="400"></img> 
+		<p class="text-sm">{{ .Overview }}</p>
+	</div>
+</body>
+</html>

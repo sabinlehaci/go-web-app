@@ -5,12 +5,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"path/filepath"
 	"html/template"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
-
 	"github.com/sabinlehaci/go-web-app/api"
 )
 
@@ -20,36 +20,22 @@ func main() {
 	th := http.HandlerFunc(handler)
 	//and add it to ServeMux
 	mux.Handle("/", th)
+	cwd, _ := os.Getwd()
+
 	log.Print("listening..")
+	log.Print( filepath.Join( cwd, "./assets/index.html" ) )
+
 	http.ListenAndServe(":8080", mux)
 }
-//put this in its own package
-const indexHTML = `
-<!doctype html>
-<html lang=en>
-<head>
-	<meta charset=utf-8>
-	<title>Sabins Movie Night</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-	<div class="bg-neutral-100">
-		<h1 class="text-xl">Sabins Movie Night</h1>
-		<p>You have been selected a random trending movie!</p>
-		<p>Your movie title is: {{ .Title }}</p>
-		<p class="text-sm">{{ .Overview }}</p>
-	</div>
-</body>
-</html>
-`
 
-var indexHTMLTemplate = template.Must(template.New("indexHTML").Parse(indexHTML))
+var indexHTMLTemplate = template.Must(template.ParseGlob("assets/index.html"))
 
 type MovieGetter interface {
 	GetTrendingMovies(ctx context.Context) (*api.Response, error)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	//here we reference our env var that we set as TMBD
 	var cli MovieGetter = &api.Client{
 		APIKey: os.Getenv("TMDB"),
 	}
@@ -60,6 +46,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//logic for randomizing movies on every refresh
 	randomIndex := rand.Intn(len(response.Movies))
 	err = indexHTMLTemplate.Execute(w, response.Movies[randomIndex])
 	if err != nil {
@@ -67,28 +54,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("failed to write response: %v", err), http.StatusInternalServerError)
 		return
 	}
-
-	//use handler logic to servemux to a specific endpoint
-	//ex: localhost:8080/api and displays pretty json
 }
 
-//A go interface is similar to a pure abstract class in C++
-// https://stackoverflow.com/questions/8970157/is-it-possible-to-mimic-go-interface-in-c-c
 
-//idea:
-//display lists and movie reviews to users based on his genre of choice
+//Separate handlers into its own dir to clean up this file 
+//Cannot show img object 
+//func imgHandler(w http.ResponseWriter, r*http.Request) {
+//	http.ServeFile(w,r,"index.html")
+//	http.Handle()
+//} 
 
-/*
-TODO: consume api and figure out a way to store api key ?
-      [] Maybe use vault as a use-case ?
-	  [] logic for consuming api use postman to validate that the server code is working as intended
-	  //Go server to send a request to an api endpoint and get back data as a byte slice
-
-	  [] request different params: trending movies, maybe ask a user for a movie id and then process it and display info of that movie -> original use case- prompt user to enter his favorite genre based on that input server sends a response
-
-
-
-	  Structure:
-	  	Make a struct to display a list of params we will use:
-
-*/
