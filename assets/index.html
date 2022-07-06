@@ -8,12 +8,12 @@
 <body>
 	<div class="bg-amber-100 bg-cover space-y-5 font-mono mx-9">
 		<p class="space-y-12"><p>
-	    <h1 class="text-5xl text-center text-blue-500 shadow-orange-500 font-bold">Sabins Movie Night</h1>
+	<h1 class="text-5xl text-center text-blue-500 shadow-orange-500 font-bold">Sabins Movie Night</h1>
 		<p class="text-base text-center">You have been selected a random trending movie!</p>
 		<p class="text-base text-center text-blue-500 font-bold">Your movie title is:</p>
 		<p class="text-center underline">{{ .Title }}</p>
-		<img src=http://image.tmdb.org/t/p/w500/{{.Poster}} width="400"></img> 
+		<center><img src=http://image.tmdb.org/t/p/w500/{{.Poster}} width="400"></center>
 		<p class="text-base indent-5">{{ .Overview }}</p>
-	</div>
+	</div>	
 </body>
 </html>
