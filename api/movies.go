@@ -21,7 +21,7 @@ type Movie struct {
 }
 
 type Response struct {
-	Page         int     `json:"page"`
+    Page         int     `json:"page"`
 	Movies       []Movie `json:"results"`
 	TotalPages   int     `json:"total_pages"`
 	TotalResults int     `json:"total_results"`
