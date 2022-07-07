@@ -1,4 +1,4 @@
-package api
+package tmdbApi
 
 //different params ? ? to map to a series of structs
 // given the structure of json response

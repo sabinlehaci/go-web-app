@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang=en>
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Sabins Movie Night</title>
+	<link rel="stylesheet" href="styles.css" >
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+	<div class="bg-gradient-to-t from-teal-400 to-sky-700">
+		<p class="space-y-12"><p>
+		<br><br>
+		<h1 class="text-5xl text-center text-white font-bold font-body">Sabins Movie Night</h1>
+		<br>
+		<p class="text-base text-center">You have been selected a random trending movie!</p>
+		<p class="text-base text-center text-white font-bold">Your movie title is:</p>
+		<br>
+		<p class="text-center underline">{{ .Movie.Title }}</p>
+		<center><img src=http://image.tmdb.org/t/p/w500/{{.Movie.Poster}} width="350"></center>
+		<br>
+		<p class="indent-5 mx-2.5 text-2xl">{{ .Movie.Overview }}</p>
+		<br>
+		<h2>Your selected favorites:</h2>   
+		{{range $movie := .Favorites}}
+			<p>{{ $movie.Title }}</p>
+		{{end}}
+	</div>
+</body>
+</html>

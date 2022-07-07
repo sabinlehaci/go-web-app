@@ -6,14 +6,12 @@ import (
 	"testing"
 )
 
-
 func TestHandler (t* testing.T) {
 	req, err := http.NewRequest("GET", "", nil) 
 
 	if err != nil {
 		t.Fatal(err)
 	}
-
 
 	recorder := httptest.NewRecorder()
 
@@ -37,9 +35,4 @@ func TestHandler (t* testing.T) {
 	// the contents of the file system at root 
 
 }
-
-
-//GO USES A CONVENTION TO ASCERTAINS A TEST FILE WHEN IT HAS A PATTERN
-//*_test.go 
-
 
