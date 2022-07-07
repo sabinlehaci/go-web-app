@@ -20,9 +20,9 @@ module.exports = {
       'gray-light': '#d3dce6',
     },
     fontFamily: {
-      sans: ['Helvetica', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-      body: ['Play'],
+      //sans: ['Helvetica', 'sans-serif'],
+      //serif: ['Merriweather', 'serif'],
+      body: ['Play']
     },
     extend: {
       spacing:{
