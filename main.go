@@ -8,10 +8,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
-	_"github.com/jackc/pgx/v4/stdlib"
+	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/sabinlehaci/go-web-app/db"
 	"github.com/sabinlehaci/go-web-app/handler"
 	"github.com/sabinlehaci/go-web-app/tmdbApi"
@@ -24,7 +25,7 @@ func main() {
 
 	log.Print("listening..")
 
-	database, err := sql.Open("pgx", "postgres://postgres:mysecretpassword@localhost:52771/postgres")
+	database, err := sql.Open("pgx", "postgres://postgres:mysecretpassword@localhost:5432/postgres")
 	if err != nil {
 		log.Fatal("oops, db connection failed", err)
 	}
