@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["index.html"], 
+  content: ["handler/assets/*.{html,js}"], 
   theme: {
     screens:{
       sm:'480PX',
@@ -19,12 +19,12 @@ module.exports = {
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
     },
-    fontFamily: {
-      sans: ['Helvetica', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-      body: ['Play'],
-    },
     extend: {
+      fontFamily: {
+        sans: ['Helvetica', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+        body: ['Play']
+      },
       spacing:{
         '128': '32rem',
         '144': '36rem',

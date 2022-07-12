@@ -5,6 +5,7 @@ package main
 import (
 	"database/sql"
 	"embed"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -24,6 +25,9 @@ func main() {
 	// and associated handlers
 
 	log.Print("listening..")
+	res, _ := http.Get("https://api.ipify.org")
+	ip, _ := ioutil.ReadAll(res.Body)
+	os.Stdout.Write(ip)
 
 	database, err := sql.Open("pgx", "postgres://postgres:mysecretpassword@localhost:5432/postgres")
 	if err != nil {
