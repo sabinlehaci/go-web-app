@@ -10,19 +10,20 @@
 <body class="min-h-screen bg-gradient-to-t from-teal-400 to-sky-700;">
 		<p class="space-y-12"><p>
 		<br><br>
-		<h1 class="text-5xl text-center text-black font-bold font-body">Sabins Movie Night</h1>
+		<h1 class="text-5xl text-center text-black font-bold font-mono">Movie Night Match-up</h1>
 		<br>
-		<p class="text-base text-center">You have been selected a random trending movie!</p>
-		<p class="text-base text-center text-black font-bold">Your movie title is:</p>
+		<p class="text-base text-center font-mono">You have been selected a random trending movie!</p>
+		<p class="text-base text-center text-black font-bold font-mono">Your movie title is:</p>
 
 		<br>
-		<p class="text-center underline">{{ .Movie.Title }}</p>
+		<p class="text-center text-3xl underline">{{ .Movie.Title }}</p>
+		<br>
 		<center><img src=http://image.tmdb.org/t/p/w500/{{.Movie.Poster}} width="350"></center>
 		<br>
-		<p class="indent-5 mx-2.5 text-2xl">{{ .Movie.Overview }}</p>
+		<p class="indent-5 mx-5 text-xl font-mono">{{ .Movie.Overview }}</p>
 		<br>
 		<br> 
-		<h2 class="text-2xl text-center font-mono">Your selected favorites:</h2>   
+		<h2 class="text-xl text-center font-mono">Your selected favorites:</h2>   
 		{{range $movie := .Favorites}}
 			<p>{{ $movie.Title }}</p>
 		{{end}}
