@@ -1,31 +1,37 @@
 <!doctype html>
 <html lang=en>
+
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title> Sabins Movie Night</title>
-	<link rel="stylesheet" href="styles.css" >
-    <script src="https://cdn.tailwindcss.com"></script>
+	<title>Movie Night Match-up</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-t from-teal-400 to-sky-700;">
-		<p class="space-y-12"><p>
-		<br><br>
-		<h1 class="text-5xl text-center text-black font-bold font-mono">Movie Night Match-up</h1>
-		<br>
-		<p class="text-base text-center font-mono">You have been selected a random trending movie!</p>
-		<p class="text-base text-center text-black font-bold font-mono">Your movie title is:</p>
 
-		<br>
-		<p class="text-center text-3xl underline">{{ .Movie.Title }}</p>
-		<br>
-		<center><img src=http://image.tmdb.org/t/p/w500/{{.Movie.Poster}} width="350"></center>
-		<br>
-		<p class="indent-5 mx-5 text-xl font-mono">{{ .Movie.Overview }}</p>
-		<br>
-		<br> 
-		<h2 class="text-xl text-center font-mono">Your selected favorites:</h2>   
-		{{range $movie := .Favorites}}
-			<p>{{ $movie.Title }}</p>
-		{{end}}
-	</body>
+<body class="min-h-screen bg-gradient-to-t from-teal-400 to-sky-700;">
+	<p class="space-y-12">
+	<p>
+	<br><br>
+	<a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-5xl font-center font-mono lg:text-5xl" href="#">
+		Movie Nig<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">ht Match-up</span>
+	</a>
+	<br>
+	<p class="text-base text-center font-mono">You have been selected a random trending movie!</p>
+	<p class="text-base text-center text-black font-bold font-mono">Your movie title is:</p>
+
+	<br>
+	<p class="text-center text-3xl underline">{{ .Movie.Title }}</p>
+	<br>
+	<center><img src=http://image.tmdb.org/t/p/w500/{{.Movie.Poster}} width="350"></center>
+	<br>
+	<p class="indent-5 mx-5 text-xl font-mono">{{ .Movie.Overview }}</p>
+	<br>
+	<br>
+	<h2 class="text-xl text-center font-mono">Your selected favorites:</h2>
+	{{range $movie := .Favorites}}
+	<p>{{ $movie.Title }}</p>
+	{{end}}
+</body>
+
 </html>
