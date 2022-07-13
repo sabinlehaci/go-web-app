@@ -9,6 +9,7 @@ import (
 )
 
 type Querier interface {
+	AddMovie(ctx context.Context, arg AddMovieParams) (FavoriteMovie, error)
 	ListMovies(ctx context.Context) ([]FavoriteMovie, error)
 }
 

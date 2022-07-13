@@ -3,3 +3,5 @@ CREATE TABLE favorite_movies (
     tmdb_id TEXT NOT NULL UNIQUE,
     title TEXT NOT NULL
 );
+
+

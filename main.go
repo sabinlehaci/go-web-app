@@ -1,11 +1,8 @@
 package main
 
-// import necessary packages
-// net/http package allows use of servemux multiplexer
 import (
 	"database/sql"
 	"embed"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -19,17 +16,10 @@ import (
 	"github.com/sabinlehaci/go-web-app/tmdbApi"
 )
 
+
 func main() {
-
-	// a servemux (aka router) stores mapping btwn URL path for app
-	// and associated handlers
-
-	log.Print("listening..")
-	res, _ := http.Get("https://api.ipify.org")
-	ip, _ := ioutil.ReadAll(res.Body)
-	os.Stdout.Write(ip)
-
-	database, err := sql.Open("pgx", "postgres://postgres:mysecretpassword@localhost:52771/postgres")
+	// For example: POSTGRES_URL="postgres://postgres:mysecretpassword@localhost:5432/postgres"
+	database, err := sql.Open("pgx", os.Getenv("POSTGRES_URL"))
 	if err != nil {
 		log.Fatal("oops, db connection failed", err)
 	}
@@ -39,9 +29,12 @@ func main() {
 		log.Fatal("oops, db migration failed", err)
 	}
 
+	log.Println("Serving on 0.0.0.0:9090")
+
 	http.ListenAndServe(":9090", &handler.Handlers{
 		MovieGetter: &tmdbApi.Client{
 			APIKey: os.Getenv("TMDB"),
+			
 		},
 		DB: db.New(database),
 	})
@@ -51,11 +44,20 @@ func main() {
 var fs embed.FS
 
 // Migrate migrates the Postgres schema to the current version.
-func validateSchema(db *sql.DB) error {
+//QUESTIONS: What exactly does this do?
+//My interpretation: Transfers the schema to the current version - what does this mean?
+
+func validateSchema(db *sql.DB) (retErr error) {
 	sourceInstance, err := iofs.New(fs, "db/migrations")
 	if err != nil {
 		return err
 	}
+	defer func() {
+		err := sourceInstance.Close()
+		if retErr == nil {
+			retErr = err
+		}
+	}()
 	driverInstance, err := postgres.WithInstance(db, new(postgres.Config))
 	if err != nil {
 		return err
@@ -68,5 +70,5 @@ func validateSchema(db *sql.DB) error {
 	if err != nil && err != migrate.ErrNoChange {
 		return err
 	}
-	return sourceInstance.Close()
+	return nil
 }

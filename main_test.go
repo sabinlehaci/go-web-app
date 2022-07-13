@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/sabinlehaci/go-web-app/handler"
 )
 
 func TestHandler (t* testing.T) {
@@ -15,7 +17,7 @@ func TestHandler (t* testing.T) {
 
 	recorder := httptest.NewRecorder()
 
-	hf := http.HandlerFunc(handler) 
+	hf := http.HandlerFunc(handler.Handlers) 
 
 	hf.ServeHTTP(recorder,req) 
 

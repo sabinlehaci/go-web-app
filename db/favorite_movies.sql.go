@@ -9,6 +9,22 @@ import (
 	"context"
 )
 
+const addMovie = `-- name: AddMovie :one
+INSERT INTO favorite_movies(tmdb_id, title) VALUES ($1, $2) RETURNING movie_id, tmdb_id, title
+`
+
+type AddMovieParams struct {
+	TmdbID string
+	Title  string
+}
+
+func (q *Queries) AddMovie(ctx context.Context, arg AddMovieParams) (FavoriteMovie, error) {
+	row := q.db.QueryRowContext(ctx, addMovie, arg.TmdbID, arg.Title)
+	var i FavoriteMovie
+	err := row.Scan(&i.MovieID, &i.TmdbID, &i.Title)
+	return i, err
+}
+
 const listMovies = `-- name: ListMovies :many
 SELECT movie_id, tmdb_id, title FROM favorite_movies
 `
