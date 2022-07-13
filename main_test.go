@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-)
 
+	"github.com/sabinlehaci/go-web-app/handler"
+)
 
 func TestHandler (t* testing.T) {
 	req, err := http.NewRequest("GET", "", nil) 
@@ -14,10 +15,9 @@ func TestHandler (t* testing.T) {
 		t.Fatal(err)
 	}
 
-
 	recorder := httptest.NewRecorder()
 
-	hf := http.HandlerFunc(handler) 
+	hf := http.HandlerFunc(handler.Handlers) 
 
 	hf.ServeHTTP(recorder,req) 
 
@@ -37,9 +37,4 @@ func TestHandler (t* testing.T) {
 	// the contents of the file system at root 
 
 }
-
-
-//GO USES A CONVENTION TO ASCERTAINS A TEST FILE WHEN IT HAS A PATTERN
-//*_test.go 
-
 
