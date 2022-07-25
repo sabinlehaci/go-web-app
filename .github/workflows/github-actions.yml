@@ -12,9 +12,7 @@ jobs:
       - name: Build web app 
         uses: actions/checkout@v2
 
-        run: | 
-          echo "Build web app"
-          sleep 10s 
+      
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with: 
           owner: hashicorp
