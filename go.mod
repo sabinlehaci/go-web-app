@@ -4,15 +4,17 @@ go 1.18
 
 require (
 	github.com/golang-migrate/migrate/v4 v4.15.2
+	github.com/jackc/pgconn v1.9.1-0.20210724152538-d89c8390a530
+	github.com/jackc/pgerrcode v0.0.0-20201024163028-a0d42d470451
 	github.com/jackc/pgtype v1.11.0
 	github.com/jackc/pgx/v4 v4.12.1-0.20210724153913-640aa07df17c
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 )
 
 require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
-	github.com/jackc/pgconn v1.9.1-0.20210724152538-d89c8390a530 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgproto3/v2 v2.1.1 // indirect

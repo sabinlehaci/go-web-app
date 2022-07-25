@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
@@ -44,8 +43,6 @@ func main() {
 var fs embed.FS
 
 // Migrate migrates the Postgres schema to the current version.
-//QUESTIONS: What exactly does this do?
-//My interpretation: Transfers the schema to the current version - what does this mean?
 
 func validateSchema(db *sql.DB) (retErr error) {
 	sourceInstance, err := iofs.New(fs, "db/migrations")

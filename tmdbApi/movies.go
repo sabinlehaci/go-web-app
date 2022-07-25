@@ -8,20 +8,20 @@ package tmdbApi
 
 //Deserialization
 type Movie struct {
-	Adult         bool   `json:"adult"`
-	Backdrop_path string `json:"backdrop_path"`
-	Genre_id      []int  `json:"genre_ids"`
-	ID            int    `json:"id"`
-	Media_type    string `json:"movie"`
-	Title         string `json:"title"`
-	Overview      string `json:"overview"`
+	Adult         bool    `json:"adult"`
+	Backdrop_path string  `json:"backdrop_path"`
+	Genre_id      []int   `json:"genre_ids"`
+	ID            int     `json:"id"`
+	Media_type    string  `json:"movie"`
+	Title         string  `json:"title"`
+	Overview      string  `json:"overview"`
 	Popularity    float64 `json:"popularity"`
-	Poster 		  string `json:"poster_path"`
-	Release_date  string `json:"release_date"`
+	Poster        string  `json:"poster_path"`
+	Release_date  string  `json:"release_date"`
 }
 
-type Response struct {
-    Page         int     `json:"page"`
+type GetTrendingMoviesResult struct {
+	Page         int     `json:"page"`
 	Movies       []Movie `json:"results"`
 	TotalPages   int     `json:"total_pages"`
 	TotalResults int     `json:"total_results"`
