@@ -8,6 +8,7 @@ on:
 jobs: 
   build: 
     name: Run web app
+    runs-on: ubuntu-latest
     steps: 
       - name: Build web app 
         uses: actions/checkout@v2
