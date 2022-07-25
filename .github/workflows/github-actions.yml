@@ -17,7 +17,7 @@ jobs:
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with: 
           owner: hashicorp
-          repo: immutable-infrastructure/.github/workflows
+          repo: immutable-infrastructure
           github_token: ${{ secrets.G_ACCESS_TOKEN }}
           workflow_file_name: github-actions.yml
         
