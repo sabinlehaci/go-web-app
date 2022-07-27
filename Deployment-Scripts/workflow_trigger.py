@@ -2,14 +2,11 @@ import os
 import requests
 import sys
 
-TOKEN= str(sys.argv[1])
-OWNER= str(sys.argv[2])
-REPO= str(sys.argv[3])
-Workflow_Name= str(sys.argv[4])
+TOKEN= str(sys.argv[0])
 
 
 
-print( "the toke value is")
+print( "the token value is")
 def trigger_workflow(Workflow_Name):
 
       headers = {
@@ -25,7 +22,7 @@ def trigger_workflow(Workflow_Name):
         }
       }
 
-      responsevalue=requests.post(f"https://api.github.com/repos/{OWNER}/{REPO}/dispatches",json=data,headers=headers)
+      responsevalue=requests.post(f"https://api.github.com/repos/hashicorp/immutable-infrastructure/dispatches",json=data,headers=headers)
       print("The response message is ",responsevalue.content)
 
 trigger_workflow(Workflow_Name)
