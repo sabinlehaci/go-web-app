@@ -2,7 +2,7 @@ import os
 import requests
 import sys
 
-TOKEN= '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'
+TOKEN= str(sys.argv[0])
 
 Workflow_Name= 'Deploy'
 
