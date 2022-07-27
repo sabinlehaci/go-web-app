@@ -22,6 +22,7 @@ jobs:
           github_user: sabinlehaci
           workflow_file_name: github-actions.yml
           trigger_workflow: true
+          ref: update-tfc-backend
 
       - name: Deploy Web App 
         run: | 
