@@ -3,6 +3,9 @@ import requests
 import sys
 
 TOKEN= str(sys.argv[0])
+OWNER= str(sys.argv[1])
+REPO= str(sys.argv[2])
+Workflow_Name= 'Deploy'
 
 
 
@@ -15,11 +18,7 @@ def trigger_workflow(Workflow_Name):
       }
 
       data = {
-        "event_type": Workflow_Name,
-        "client_payload": {
-          'baselinetag': pl_Baseline_Number,
-          'revision_number': pl_Baseline_Revision
-        }
+        "event_type": Workflow_Name
       }
 
       responsevalue=requests.post(f"https://api.github.com/repos/hashicorp/immutable-infrastructure/dispatches",json=data,headers=headers)
