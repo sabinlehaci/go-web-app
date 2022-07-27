@@ -1,9 +1,11 @@
 import os
 import requests
 import sys
+from dotenv import load_dotenv
 
-TOKEN= str(sys.argv[0])
-#NOT working? 
+load_dotenv() 
+
+TOKEN = os.getenv('G_ACCESS_TOKEN')
 
 Workflow_Name= 'Deploy'
 

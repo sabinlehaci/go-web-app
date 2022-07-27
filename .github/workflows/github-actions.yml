@@ -26,8 +26,8 @@ jobs:
   build: 
     name: Run web app
     runs-on: ubuntu-latest
-    env: 
-      pat_token: ${{secrets.G_ACCESS_TOKEN}}
+    #env: 
+    #  pat_token: ${{secrets.G_ACCESS_TOKEN}}
       
     steps: 
       
@@ -43,6 +43,7 @@ jobs:
           cd "$GITHUB_WORKSPACE/Deployment-Scripts/"
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip3 install dotenv
           echo "Deploy Web App"
           sleep 10s
 
@@ -50,7 +51,7 @@ jobs:
         run: | 
           cd "$GITHUB_WORKSPACE/Deployment-Scripts/"
           python $GITHUB_WORKSPACE/Deployment-Scripts/workflow_trigger.py
-          ${{ env.pat_token }} 
+         # ${{ env.pat_token }} 
           ${{ github.event.inputs.workflow2_github_account }}  
           ${{ github.event.inputs.workflow2_repo_github }} 
           ${{ github.event.inputs.workflow2_name}}
