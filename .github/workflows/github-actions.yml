@@ -14,14 +14,29 @@ jobs:
         uses: actions/checkout@v2
 
       
-      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+      - uses: convictional/trigger-workflow-and-wait@v1.6.1
         with: 
           owner: hashicorp
           repo: immutable-infrastructure
           github_token: ${{ secrets.G_ACCESS_TOKEN }}
+          github_user: sabinlehaci
           workflow_file_name: github-actions.yml
           ref: update-tfc-backend
       - name: Deploy Web App 
         run: | 
           echo "Deploy Web App"
           sleep 10s
+          trigger_workflow: true
+
+      - name: Deploy Web App 
+        run: | 
+          echo "Deploy Web App"
+          sleep 10s 
+    
+
+
+        
+
+
+
+
