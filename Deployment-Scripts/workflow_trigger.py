@@ -6,12 +6,11 @@ TOKEN= str(sys.argv[0])
 OWNER= str(sys.argv[1])
 REPO= str(sys.argv[2])
 Workflow_Name= str(sys.argv[3])
-pl_Baseline_Number= str(sys.argv[4])
-pl_Baseline_Revision = str(sys.argv[5])
+
 
 
 print( "the toke value is")
-def trigger_workflow(Workflow_Name,pl_Baseline_Number,pl_Baseline_Revision):
+def trigger_workflow(Workflow_Name):
 
       headers = {
         "Accept": "application/vnd.github.v3+json",
@@ -29,4 +28,4 @@ def trigger_workflow(Workflow_Name,pl_Baseline_Number,pl_Baseline_Revision):
       responsevalue=requests.post(f"https://api.github.com/repos/{OWNER}/{REPO}/dispatches",json=data,headers=headers)
       print("The response message is ",responsevalue.content)
 
-trigger_workflow(Workflow_Name,pl_Baseline_Number,pl_Baseline_Revision)
+trigger_workflow(Workflow_Name)
