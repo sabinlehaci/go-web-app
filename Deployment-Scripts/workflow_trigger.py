@@ -33,7 +33,7 @@ def trigger_workflow(Workflow_Name,pl_Baseline_Number,pl_Baseline_Revision):
 =======
 
       responsevalue=requests.post(f"https://api.github.com/repos/{OWNER}/{REPO}/dispatches",json=data,headers=headers)
-      print("The respoinse message is ",responsevalue.content)
+      print("The response message is ",responsevalue.content)
 >>>>>>> 751944b1a6e004d054332975b0e13f2a246194a1
 
 trigger_workflow(Workflow_Name,pl_Baseline_Number,pl_Baseline_Revision)
