@@ -1,36 +1,55 @@
-name: deploy
+name: build 
 on: 
   push:
     branches:
     - master
     - new-kelly-trial
+  workflow_dispatch: 
+    inputs: 
+      workflow2_name: 
+        description: Deploy triggering
+        required: true
+        default: 'Deploy'
 
+      workflow2_github_account:
+        description: 'Github Account Owner'
+        required: true 
+        default: 'hashicorp'
+      
+      workflow2_repo_github: 
+        description: 'GitHub Repository Name'
+        required: true 
+        default: 'immutable-infrastructure'
+
+              
 jobs: 
   build: 
     name: Run web app
     runs-on: ubuntu-latest
-    steps: 
-      - name: Build web app 
-        uses: actions/checkout@v2
-
+    env: 
+      pat_token: ${{secrets.G_ACCESS_TOKEN}}
       
-      - uses: convictional/trigger-workflow-and-wait@v1.6.1
-        with: 
-          owner: hashicorp
-          repo: immutable-infrastructure
-          github_token: ${{ secrets.G_ACCESS_TOKEN }}
-          github_user: sabinlehaci
-          workflow_file_name: github-actions.yml
-          ref: update-tfc-backend
+    steps: 
+      
+      - uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          
       - name: Deploy Web App 
         run: | 
+          cd "$GITHUB_WORKSPACE/Deployment-Scripts/"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
           echo "Deploy Web App"
           sleep 10s
-          trigger_workflow: true
 
       - name: Deploy Web App 
         run: | 
-          echo "Deploy Web App"
+          cd "$GITHUB_WORKSPACE/Deployment-Scripts/"
+          python $GITHUB_WORKSPACE/Deployment-Scripts/workflow_trigger.py ${{ env.pat_token }} ${{ github.event.inputs.workflow2_github_account}}  ${{ github.event.inputs.workflow2_repo_github}} ${{ github.event.inputs.workflow2_name}}
           sleep 10s 
     
 
