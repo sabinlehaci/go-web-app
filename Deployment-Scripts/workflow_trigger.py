@@ -3,8 +3,7 @@ import requests
 import sys
 
 TOKEN= str(sys.argv[0])
-OWNER= str(sys.argv[1])
-REPO= str(sys.argv[2])
+
 Workflow_Name= 'Deploy'
 
 
