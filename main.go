@@ -28,9 +28,9 @@ func main() {
 		log.Fatal("oops, db migration failed", err)
 	}
 
-	log.Println("Serving on 0.0.0.0:9090")
+	log.Println("Serving on 0.0.0.0:8080")
 
-	http.ListenAndServe(":9090", &handler.Handlers{
+	http.ListenAndServe(":8080", &handler.Handlers{
 		MovieGetter: &tmdbApi.Client{
 			APIKey: os.Getenv("TMDB"),
 			
